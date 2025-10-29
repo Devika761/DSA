@@ -1,0 +1,64 @@
+//Method 1: Using Sum Formula (Efficient and Simple)
+/*{
+--sorted and unsorted array
+TC : O(N)
+SC:O(1)
+
+}
+*/
+
+public class MissingNumber {
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 4, 5, 6};  // Missing 3
+
+        int n = arr.length + 1; // Because one number is missing
+        int expectedSum = n * (n + 1) / 2;
+        int actualSum = 0;
+
+        for (int num : arr) {
+            actualSum += num;
+        }
+
+        int missingNumber = expectedSum - actualSum;
+
+        System.out.println("Missing number is: " + missingNumber);
+    }
+}
+
+
+
+------------------------------------------------------------------------------------------
+
+
+
+//Method 2: Using XOR (Bitwise Approach)
+
+/*{
+--sorted and unsorted array
+TC : O(N)
+SC:O(1)
+
+}
+*/
+
+public class MissingNumberXOR {
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 4, 5, 6};  // Missing 3
+
+        int n = arr.length + 1;
+        int xor1 = 0; // XOR of all numbers from 1 to n
+        int xor2 = 0; // XOR of all elements in the array
+
+        for (int i = 1; i <= n; i++) {
+            xor1 ^= i;
+        }
+
+        for (int num : arr) {
+            xor2 ^= num;
+        }
+
+        int missingNumber = xor1 ^ xor2;
+
+        System.out.println("Missing number is: " + missingNumber);
+    }
+}
