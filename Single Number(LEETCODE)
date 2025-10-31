@@ -1,0 +1,85 @@
+//Approach 1: Brute Force (Using nested loops)
+
+/*{
+Time Complexity: O(n²) → because of double loop
+
+Space Complexity: O(1) → no extra data structures
+}*/
+
+class Solution {
+    public int singleNumber(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            int count = 0;
+            for (int j = 0; j < nums.length; j++) {
+                if (nums[i] == nums[j]) {
+                    count++;
+                }
+            }
+            if (count == 1) {
+                return nums[i];
+            }
+        }
+        return -1; // should never reach here
+    }
+}
+
+
+----------------------------------------------------------------------
+
+//: Using HashMap (Counting frequency)
+
+/*{
+
+
+Time Complexity: O(n) → one pass to fill map + one pass to check
+
+Space Complexity: O(n) → stores up to all unique elements
+}*/
+
+import java.util.HashMap;
+
+class Solution {
+    public int singleNumber(int[] nums) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        for (int num : nums) {
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+
+        for (int key : map.keySet()) {
+            if (map.get(key) == 1) {
+                return key;
+            }
+        }
+        return -1;
+    }
+}
+----------------------------------------------------------------
+
+//Using Set (Mathematical Trick)
+
+/*{
+Time Complexity: O(n) → single traversal
+
+Space Complexity: O(n) → HashSet for unique numbers
+}*/
+
+
+import java.util.HashSet;
+
+class Solution {
+    public int singleNumber(int[] nums) {
+        HashSet<Integer> set = new HashSet<>();
+        int sumSet = 0, sumNums = 0;
+
+        for (int num : nums) {
+            if (!set.contains(num)) {
+                set.add(num);
+                sumSet += num;
+            }
+            sumNums += num;
+        }
+
+        return 2 * sumSet - sumNums;
+    }
+}
