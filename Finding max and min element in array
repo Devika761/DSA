@@ -1,0 +1,24 @@
+/*{
+TC:0(N)
+SC: 0(1)
+}*/
+
+
+class Main {
+    public static void main(String[] args) {
+        int arr[] = {5, 1, 9, 2, 10, -3, 70, -900};
+
+        int max = arr[0];
+        int min = arr[0];
+
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] > max)
+                max = arr[i];
+            else if (arr[i] < min)
+                min = arr[i];
+        }
+
+        System.out.println("Max: " + max);
+        System.out.println("Min: " + min);
+    }
+}
