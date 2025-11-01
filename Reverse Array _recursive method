@@ -1,0 +1,30 @@
+class Rev {
+    void rev1(int arr[], int start, int end) {
+        // Base condition
+        if (start >= end) {
+            return;
+        }
+
+        // Swap the elements
+        int temp = arr[start];
+        arr[start] = arr[end];
+        arr[end] = temp;
+
+        // Recursive call
+        rev1(arr, start + 1, end - 1);
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        int arr[] = {1, 2, 3, 4, 5};
+
+        Rev r = new Rev();
+        r.rev1(arr, 0, arr.length - 1);
+
+        // Print reversed array
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+    }
+}
