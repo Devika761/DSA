@@ -1,0 +1,58 @@
+/*
+  {
+  TC : o(logn)
+SC : 0(1)
+}*/
+
+
+public class Solution {
+
+    public double myPow(double x, int n) {
+        if (n == 0) return 1.0;
+        if (x == 0) return 0;
+        if (x == 1) return 1.0;
+        if (x == -1 && n % 2 == 0) return 1.0;
+        if (x == -1 && n % 2 != 0) return -1.0;
+
+        long BinForm = n;
+
+        if (n < 0) {
+            x = 1 / x;
+            BinForm = -BinForm;
+        }
+
+        double ans = 1;
+
+        while (BinForm > 0) {
+            if (BinForm % 2 == 1) {
+                ans *= x;
+            }
+            x *= x;
+            BinForm /= 2;
+        }
+        return ans;
+    }
+
+    public static void main(String[] args) {
+
+        Solution s = new Solution();
+
+        // 🔥 Test case 1
+        System.out.println("myPow(2, 10) = " + s.myPow(2, 10));   // 1024.0
+
+        // 🔥 Test case 2
+        System.out.println("myPow(2, -2) = " + s.myPow(2, -2));   // 0.25
+
+        // 🔥 Test case 3
+        System.out.println("myPow(3, 3) = " + s.myPow(3, 3));     // 27.0
+
+        // 🔥 Test case 4
+        System.out.println("myPow(5, 0) = " + s.myPow(5, 0));     // 1.0
+
+        // 🔥 Test case 5
+        System.out.println("myPow(-2, 3) = " + s.myPow(-2, 3));   // -8.0
+
+        // 🔥 Test case 6
+        System.out.println("myPow(-2, 4) = " + s.myPow(-2, 4));   // 16.0
+    }
+}
