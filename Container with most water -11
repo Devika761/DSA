@@ -1,0 +1,58 @@
+//BRUTE FORCE 
+/*
+{
+TC : o(n^2)
+}
+
+class Main {
+ 
+    public static void main(String[] args) {
+   int height[]={1,8,6,2,5,4,8,3,7};   
+    int n=height.length;
+    int ht=Integer.MIN_VALUE;
+    int area;
+    int maxwater=0;
+    
+    for(int i=0;i<n;i++){
+        for(int j=i+1;j<n;j++){
+            int width=j-i;
+             ht=Math.min(height[i],height[j]);
+            area=width*ht;
+            maxwater=Math.max(maxwater,area);  
+        }
+    }
+    System.out.println(maxwater);
+    }
+}
+
+
+----------------------------------------------------------------------
+--------------------------------------------------------------------
+
+/two pointer approach 
+
+/*
+{
+TC: d+n-d=0(n)
+*/
+
+class Solution {
+    public int maxArea(int[] height) {
+        int maxwater = 0;
+        int lp = 0, rp = height.length - 1;
+
+        while (lp < rp) {
+            int width = rp - lp;
+            int ht = Math.min(height[lp], height[rp]);
+            maxwater = Math.max(maxwater, width * ht);
+
+            if (height[lp] < height[rp]) {
+                lp++;
+            } else {
+                rp--;
+            }
+        }
+
+        return maxwater;
+    }
+}
